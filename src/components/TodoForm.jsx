@@ -1,9 +1,18 @@
-import React from 'react'
+import { useState } from "react";
 
-function TodoForm() {
-  return <div className="todo-form">
-    <h2>Criar Tarefa:</h2>
-    <form>
+const TodoForm = () => {
+  const [value, setValue] = useState("");
+  const [cetegory, setCategory] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Enviou form!");
+  };
+
+  return (
+    <div className="todo-form">
+     <h2>Criar Tarefa:</h2>
+    <form onSubmit={handleSubmit}>
       <input type="text" placeholder="Digite o título" />
       <select>
         <option value="">Seleceione uma categoria</option>
@@ -13,7 +22,8 @@ function TodoForm() {
       </select>
       <button type="submit">Criar tarefa</button>
     </form>
-  </div>;
-}
+  </div>
+  );
+};
 
 export default TodoForm;
