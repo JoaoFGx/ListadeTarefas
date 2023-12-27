@@ -28,6 +28,8 @@ function App() {
     },
   ]);
 
+  const [search, setSearch] = useState("");
+
   const addTodo = (text, category) => {
     const newTodos = [
       ...todos,
@@ -61,9 +63,13 @@ function App() {
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
-      <Search />
+      <Search search={search} setSearch={setSearch} />
       <div className="todo-list">
-        {todos.map((todo) => (
+        {todos
+        .filter((todo) =>
+        todo.text.toLowerCase().includes(search.toLowerCase())
+        )
+        .map((todo) => (
           <Todo 
             key={todo.id}
             todo={todo}
